@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Shore</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        :root {
+            --color-primary: #1e1b4b; /* Dark Purple */
+            --color-secondary: #c084fc; /* Light Purple */
+            --color-accent: #fcd34d; /* Gold */
+            --color-text: #e2e8f0; /* Off-white */
+            --color-light-bg: #2e295d;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-primary);
+            color: var(--color-text);
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gradient-text {
+            background-image: linear-gradient(to right, #f97316, #f59e0b, #eab308, #84cc16, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-separator {
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(to right, #4c1d95, #c084fc, #4c1d95);
+        }
+
+        .infinity-symbol {
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            animation: stroke-animation 5s infinite;
+        }
+
+        @keyframes stroke-animation {
+            0% {
+                stroke-dasharray: 0 500;
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dasharray: 500 0;
+                stroke-dashoffset: 0;
+            }
+            100% {
+                stroke-dasharray: 0 500;
+                stroke-dashoffset: 500;
+            }
+        }
+        
+        .card {
+            background-color: var(--color-light-bg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card {
+            background-size: cover;
+            background-position: center;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .swirl-container {
+            position: fixed; /* Use fixed to keep it in place on scroll */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .swirl {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 123, 255, 0.1); /* Lighter, branded color */
+            animation: swirl-animation 20s linear infinite;
+        }
+
+        .swirl:nth-child(1) {
+            width: 25vw;
+            height: 25vw;
+            top: -10%;
+            left: -5%;
+            animation-duration: 25s;
+        }
+
+        .swirl:nth-child(2) {
+            width: 50vw;
+            height: 50vw;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 30s;
+        }
+
+        .swirl:nth-child(3) {
+            width: 35vw;
+            height: 35vw;
+            bottom: -15%;
+            right: -10%;
+            animation-duration: 20s;
+        }
+
+        @keyframes swirl-animation {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .menu-container {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .menu-toggle {
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-toggle img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .menu-items {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .menu-items.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .menu-item {
+            position: absolute;
+            /* Start from the center */
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transform-origin: center center;
+        }
+        
+        .menu-item:hover {
+            background-color: #0056b3;
+            transform: scale(1.1); /* Apply scale on individual guy  */
+        }
+        
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+            main {
+      display: flex;
+      justify-content: space-around;
+      padding: 40px 20px;
+      flex-wrap: wrap;
+}
+
+.column {
+      width: 30%;
+      min-width: 250px;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+      margin-bottom: 20px;
+}
+
+.column h2 {
+      font-size: 1.8rem;
+      color: #006064;
+      margin-bottom: 10px;
+}
+
+.column p {
+      font-size: 1rem;
+      line-height: 1.6;
+}
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+}
+    </style>
+</head>
+<body>
+    <div class="swirl-container">
+        <div class="swirl"></div>
+        <div class="swirl"></div>
+        <div class="swirl"></div>
+    </div>
+
+    <div class="menu-container">
+        <div class="menu-toggle">
+            <img src="img1.png" alt="Your Image">
+        </div>
+        <div class="menu-items">
+            <a href="#home" class="menu-item">Home</a>
+            <a href="#about" class="menu-item">About</a>
+            <a href="#portfolio" class="menu-item">Portfolio</a>
+            <a href="#contact" class="menu-item">Contact</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <header id="home" class="text-center my-5" style="padding-top: 5rem;">
+            <img src="img1.png" alt="Infinity Shore Logo" class="logo">
+            <h1 class="display-4 mt-3">Infinity Shore</h1>
+            <p class="lead">My Programming Portfolio</p>
+        </header>
+           <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center text-center p-8 bg-black/50 relative">
+        <div class="absolute inset-0 z-0 opacity-10">
+            <!-- Background SVG Infinity Symbol -->
+            <svg class="h-full w-full" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#ef4444" />
+                        <stop offset="20%" style="stop-color:#f97316" />
+                        <stop offset="40%" style="stop-color:#f59e0b" />
+                        <stop offset="60%" style="stop-color:#eab308" />
+                        <stop offset="80%" style="stop-color:#84cc16" />
+                        <stop offset="100%" style="stop-color:#22c55e" />
+                    </linearGradient>
+                </defs>
+                <path class="infinity-symbol" d="M200 250 A250 125 0 1 1 500 250 A250 125 0 1 1 800 250 C800 250 800 250 800 250" stroke="url(#infinityGradient)"/>
+            </svg>
+        </div>
+
+    <header>
+    
+    <canvas id="waveCanvas"></canvas>
+  </header>
+
+  <main>
+    <section class="column">
+      <h2>About Me</h2>
+      <p>Crafting code with elegance and purpose. I build digital experiences that ripple with impact.</p>
+    </section>
+    <section class="column">
+      <h2>Projects</h2>
+      <p>From sleek interfaces to robust backends—explore the shoreline of my creations.</p>
+    </section>
+    <section class="column">
+      <h2>Contact</h2>
+      <p>Let’s make waves together. Reach out and let’s build something infinite.</p>
+    </section>
+  </main>
+
+          <!-- Contact Section -->
+        <section id="contact" class="my-16">
+            <h2 class="section-title text-4xl font-bold mb-16 text-center">Contact Me</h2>
+            <div class="bg-gray-800 rounded-lg p-8 shadow-md text-center">
+                <p class="text-lg mb-4">
+                    Interested in working together or just want to say hi? Feel free to reach out.
+                </p>
+                <a href="mailto:your.email@example.com" class="py-3 px-8 text-lg font-semibold rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-transform duration-300 transform hover:scale-105 shadow-lg">
+                    Say Hello
+                </a>
+            </div>
+        </section>
+
+    </main>
+    
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white min-h-screen flex flex-col">
+  <div class="flex-grow">
+
+    <!-- Footer -->
+    <footer class="text-center py-8 border-t border-gray-700 mt-16">
+        <p class="text-gray-500">&copy; 2025 Infinity Shore. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for smooth scrolling and mobile menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu after clicking a link
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+    </div>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menuItems = document.querySelector('.menu-items');
+        const items = document.querySelectorAll('.menu-item');
+
+        menuToggle.addEventListener('click', () => {
+            menuItems.classList.toggle('active');
+
+            // The radius of the circle menu
+            const radius = 120; 
+            const numItems = items.length;
+            const angleIncrement = (2 * Math.PI) / numItems;
+
+            items.forEach((item, index) => {
+                if (menuItems.classList.contains('active')) {
+                    // Calculate the position for each item
+                    const angle = index * angleIncrement;
+                    const x = radius * Math.cos(angle);
+                    const y = radius * Math.sin(angle);
+                    
+                    // Position the item. We use translate(-50%, -50%) to center the item on its point.
+                    item.style.transform = `translate(${x}px, ${y}px)`;
+                } else {
+                    // Return the item to the center
+                    item.style.transform = 'translate(0, 0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
